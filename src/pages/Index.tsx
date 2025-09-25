@@ -39,12 +39,12 @@ const Index = () => {
             <div className="flex gap-4 justify-center">
               <Button 
                 className="hero-button"
-                onClick={() => setShowBookingForm(true)}
+                onClick={() => window.location.href = '/login'}
               >
-                Book Appointment
+                Get Started
               </Button>
               <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                View Calendar
+                Learn More
               </Button>
             </div>
           </div>
