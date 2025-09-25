@@ -2,39 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* SchedulEase Design System - Professional Academic Appointment Scheduler
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background & Text */
+    --background: 210 20% 98%;
+    --foreground: 216 28% 15%;
 
+    /* Card System */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 216 28% 15%;
 
+    /* Popover System */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 216 28% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary Brand - Professional Blue */
+    --primary: 213 94% 68%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 94% 85%;
+    --primary-dark: 213 94% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Academic Green */
+    --secondary: 154 65% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 154 65% 75%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Status Colors */
+    --approved: 142 76% 45%;
+    --approved-foreground: 0 0% 100%;
+    --pending: 43 89% 55%;
+    --pending-foreground: 216 28% 15%;
+    --rejected: 0 84% 60%;
+    --rejected-foreground: 0 0% 100%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neutral System */
+    --muted: 210 16% 94%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 216 28% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Interaction States */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 213 94% 68%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Workflow Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%), hsl(213 94% 85%));
+    --gradient-workflow: linear-gradient(90deg, hsl(213 94% 68%), hsl(154 65% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(154 65% 55%) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(213 94% 68% / 0.1), 0 2px 4px -1px hsl(213 94% 68% / 0.06);
+    --shadow-workflow: 0 10px 25px -5px hsl(213 94% 68% / 0.25);
+    --shadow-elevated: 0 20px 25px -5px hsl(213 94% 68% / 0.15);
 
     --radius: 0.5rem;
 
@@ -56,33 +82,46 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Dark Theme for SchedulEase */
+    --background: 216 35% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 216 30% 12%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 216 30% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 213 94% 68%;
+    --primary-foreground: 216 35% 8%;
+    --primary-light: 213 94% 85%;
+    --primary-dark: 213 94% 45%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 154 65% 55%;
+    --secondary-foreground: 216 35% 8%;
+    --secondary-light: 154 65% 75%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --approved: 142 76% 45%;
+    --approved-foreground: 0 0% 100%;
+    --pending: 43 89% 55%;
+    --pending-foreground: 216 35% 8%;
+    --rejected: 0 84% 60%;
+    --rejected-foreground: 0 0% 100%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 62% 31%;
     --destructive-foreground: 210 40% 98%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 213 94% 68%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%), hsl(213 94% 85%));
+    --gradient-workflow: linear-gradient(90deg, hsl(213 94% 68%), hsl(154 65% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(213 94% 68%) 0%, hsl(154 65% 55%) 100%);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +139,86 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Workflow Animation Classes */
+  .workflow-step {
+    @apply transition-all duration-500 ease-in-out;
+  }
+
+  .workflow-step.active {
+    @apply scale-105 shadow-lg;
+  }
+
+  .workflow-connector {
+    @apply relative;
+  }
+
+  .workflow-connector::after {
+    content: '';
+    @apply absolute top-1/2 left-full w-8 h-0.5 bg-gradient-to-r from-primary to-secondary transform -translate-y-1/2;
+  }
+
+  /* Status Badge Animations */
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium transition-all duration-300;
+  }
+
+  .status-pending {
+    @apply bg-pending/20 text-pending border border-pending/30;
+  }
+
+  .status-approved {
+    @apply bg-approved/20 text-approved border border-approved/30;
+  }
+
+  .status-rejected {
+    @apply bg-rejected/20 text-rejected border border-rejected/30;
+  }
+
+  /* Calendar Animation */
+  .calendar-slot {
+    @apply transition-all duration-200 hover:scale-105 hover:shadow-md;
+  }
+
+  .calendar-slot.available {
+    @apply bg-secondary/10 border-secondary/20 hover:bg-secondary/20;
+  }
+
+  .calendar-slot.booked {
+    @apply bg-primary/10 border-primary/20;
+  }
+
+  /* Form Enhancements */
+  .form-section {
+    @apply space-y-4 p-6 rounded-lg border bg-card shadow-sm;
+  }
+}
+
+@layer components {
+  .workflow-card {
+    @apply bg-card border rounded-lg p-6 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+
+  .workflow-card:hover {
+    box-shadow: var(--shadow-workflow);
+  }
+
+  .gradient-text {
+    background: var(--gradient-workflow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-button {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg;
+    @apply transform hover:scale-105 transition-all duration-200;
+  }
+
+  .hero-button:hover {
+    box-shadow: var(--shadow-elevated);
   }
 }
