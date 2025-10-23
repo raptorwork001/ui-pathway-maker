@@ -1,21 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Building2, User, Shield, Mail, Lock } from 'lucide-react';
+import { Building2, User, Shield, Chrome } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 const Login = () => {
   const [selectedRole, setSelectedRole] = useState<'user' | 'admin'>('user');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock login - store role in localStorage for demo
+  const handleOAuthLogin = (provider: string) => {
+    // Mock OAuth login - in production this would redirect to OAuth provider
     localStorage.setItem('userRole', selectedRole);
     localStorage.setItem('isLoggedIn', 'true');
     
@@ -35,14 +30,14 @@ const Login = () => {
             <span className="text-sm font-medium">NITC Director's Office</span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-2">SchedulEase</h1>
-          <p className="text-white/80">Sign in to your account</p>
+          <p className="text-white/80">Sign in to continue</p>
         </div>
 
         <Card className="workflow-card">
           <CardHeader className="space-y-4">
-            <CardTitle className="text-center">Welcome Back</CardTitle>
+            <CardTitle className="text-center text-2xl">Welcome</CardTitle>
             <CardDescription className="text-center">
-              Choose your account type and sign in
+              Choose your role and sign in with your account
             </CardDescription>
             
             {/* Role Selection */}
@@ -50,85 +45,64 @@ const Login = () => {
               <button
                 type="button"
                 onClick={() => setSelectedRole('user')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-md text-sm font-medium transition-all ${
                   selectedRole === 'user'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <User className="h-4 w-4" />
-                Regular User
+                User
               </button>
               <button
                 type="button"
                 onClick={() => setSelectedRole('admin')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-md text-sm font-medium transition-all ${
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-md text-sm font-medium transition-all ${
                   selectedRole === 'admin'
                     ? 'bg-background text-foreground shadow-sm'
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <Shield className="h-4 w-4" />
-                Administrator
+                Admin
               </button>
             </div>
           </CardHeader>
 
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
+          <CardContent className="space-y-4">
+            {/* OAuth Login Buttons */}
+            <Button
+              onClick={() => handleOAuthLogin('google')}
+              variant="outline"
+              className="w-full h-12 gap-3 text-base font-medium"
+            >
+              <Chrome className="h-5 w-5" />
+              Continue with Google
+            </Button>
 
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-              </div>
+            <Button
+              onClick={() => handleOAuthLogin('microsoft')}
+              variant="outline"
+              className="w-full h-12 gap-3 text-base font-medium"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 21 21" fill="currentColor">
+                <path d="M0 0h10v10H0V0zm11 0h10v10H11V0zM0 11h10v10H0V11zm11 0h10v10H11V11z"/>
+              </svg>
+              Continue with Microsoft
+            </Button>
 
-              {/* Demo Credentials */}
-              <div className="bg-muted/50 p-3 rounded-lg space-y-2">
-                <p className="text-xs text-muted-foreground font-medium">Demo Credentials:</p>
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="text-xs">
-                    <Badge variant="outline" className="text-xs mb-1">User</Badge>
-                    <p>user@nitc.ac.in</p>
-                    <p>password123</p>
-                  </div>
-                  <div className="text-xs">
-                    <Badge variant="outline" className="text-xs mb-1">Admin</Badge>
-                    <p>admin@nitc.ac.in</p>
-                    <p>admin123</p>
-                  </div>
-                </div>
-              </div>
+            <div className="relative">
+              <Separator className="my-4" />
+              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground">
+                DEMO MODE
+              </span>
+            </div>
 
-              <Button type="submit" className="w-full hero-button">
-                Sign In as {selectedRole === 'admin' ? 'Administrator' : 'User'}
-              </Button>
-            </form>
+            <div className="bg-muted/50 p-4 rounded-lg text-center space-y-2">
+              <p className="text-sm text-muted-foreground">
+                Click any button above to demo as <span className="font-semibold text-foreground">{selectedRole === 'admin' ? 'Administrator' : 'Regular User'}</span>
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
